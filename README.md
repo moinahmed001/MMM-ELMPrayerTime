@@ -6,7 +6,7 @@ This an extension for the [MagicMirror<sup>2</sup>](https://github.com/MichMich/
 
 ## Installation
 1. Navigate into your MagicMirror's `modules` folder
-2. execute `git clone https://github.com/moinahmed001/MMM-ELMPrayerTime/.git`
+2. execute `git clone https://github.com/moinahmed001/MMM-ELMPrayerTime`
 3. if this module does not run correctly, try `npm install async`
 
 ## Using the module
