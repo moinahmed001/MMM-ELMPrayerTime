@@ -85,12 +85,18 @@ Module.register("MMM-ELMPrayerTime",{
     Log.log(self.name + ': updateSchedule');
     var urlBase = "http://api.aladhan.com/timings/";
     var curUnixTime = moment().unix();
-    var urlToday = "http://moinahmed.ddns.net:5000/prayer_timetable"
+    var urlToday = "https://script.googleusercontent.com/macros/echo?user_content_key=JBB9t6iBCA-rgsPQFeJqfn4MEQKpdZwsr_VE3iGWbL4ySXn4dW8E4PRYBxjxxbWdFiFW6xwFlvzi_-wd1m8cqnEv5tCitG1zm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnK__4VCI9cUfislTBEwE9483B0TZ_HJEksaW92hDCPez_yZEOM1K-ZWz7rJarf50_NsAUXIaJqQ5&lib=MnbyLqsdFHGdCo2Zr5NhOSJA7VlBhJiiH"
     // var urlNextday = urlBase + this.getParams(curUnixTime + 86400);
     var resultToday = {};
     var resultNextday = {};
     var nbReq = 1;
     var nbRes = 0;
+
+var mm_now = new Date();
+var mm_start = new Date(mm_now.getFullYear(), 0, 0);
+var mm_diff = mm_now - mm_start;
+var mm_oneDay = 1000 * 60 * 60 * 24;
+var mm_day = Math.floor(mm_diff / mm_oneDay)-1;
 
     var todayRequest = new XMLHttpRequest();
 		todayRequest.open("GET", urlToday, true);
@@ -102,7 +108,7 @@ Module.register("MMM-ELMPrayerTime",{
           // self.todaySchedule = resultToday.data.timings;
           // debug/testing only
           self.todaySchedule = {
-              "Fajr":resultToday[0]["Fajr"].toString(), "Dhuhr":resultToday[1]["Dhuhr"].toString(), "Asr":resultToday[2]["Asr"].toString(), "Maghrib":resultToday[3]["Maghrib"].toString(), "Isha":resultToday[4]["Isha"].toString(),
+              "Fajr":resultToday["data"][mm_day].fajrbegins.toString(), "Dhuhr":resultToday["data"][mm_day].zuhrbegins.toString(), "Asr":resultToday["data"][mm_day].asrmithl1.toString(), "Maghrib":resultToday["data"][mm_day].maghribbegins.toString(), "Isha":resultToday["data"][mm_day].ishābegins.toString(),
               "Imsak":"04:20"
           };
 
